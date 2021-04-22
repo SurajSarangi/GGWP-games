@@ -143,13 +143,14 @@ footer{
   margin-top: 120px;
   max-width: 100%;
 }
-footer div{
+.cp{
   color: #DDD;
 }
-.cp{
-  margin-bottom: 15px;
-}
-small, small a{
+.att{
+  margin-top: 15px;
   color:#999;
   font-size: 0.8em;
+}
+.att a{
+  color:#999;
 }
