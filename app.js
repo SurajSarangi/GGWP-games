@@ -28,14 +28,4 @@ app.use((req,res,next) => {
 // routes
 app.get('/', (req, res) => res.render('home', { title: "Home "}));
 app.get('/games', (req, res) => res.render('games', { title: "Games" }));
-
-app.get('/set-cookies', (req,res) => {
-  res.cookie('newUser', true);
-  res.send('check cookies');
-});
-
-app.get('/get-cookies', (req,res) => {
-  res.json(req.cookies);
-});
-
 app.use(authRoutes);
