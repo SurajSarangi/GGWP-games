@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const PORT = process.env.PORT || 3000;
 const authRoutes = require('./routes/authRoutes');
 const cookieParser = require('cookie-parser');
+const { jwtCheck } = require('./middlewares/jwtCheck');
 
 const app = express();
 
@@ -27,5 +28,5 @@ app.use((req,res,next) => {
 
 // routes
 app.get('/', (req, res) => res.render('home', { title: "Home "}));
-app.get('/games', (req, res) => res.render('games', { title: "Games" }));
+app.get('/games', jwtCheck, (req, res) => res.render('games', { title: "Games" }));
 app.use(authRoutes);

@@ -50,6 +50,10 @@ nav li a{
   border-radius: 36px;
   background: #FEE996;
 }
+.btn2{
+  background: #b930d6;
+  color: aqua;
+}
 form h2{
   font-size: 2.4em;
   font-weight: 900;
