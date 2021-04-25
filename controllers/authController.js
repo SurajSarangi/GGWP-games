@@ -1,22 +1,6 @@
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
-
-const handleErrors = (err) => {
-    let errors = { email : '', password : '' };
-
-    if(err.code === 11000){
-        errors.email = "That email has already been registered. Try logging in"
-        return errors;
-    }
-
-    if(err.message.includes('user validation failed')){
-        Object.values(err.errors).forEach(({properties}) => {
-            errors[properties.path] = properties.message;
-        });
-    }
-
-    return errors;
-};
+const handleErrors = require('./handleErrors');
 
 const maxAge = 3 * 24 * 60 * 60;
 const createToken = (id) => {
@@ -54,10 +38,13 @@ const login_post = async (req,res) => {
 
     try{
         const user = await User.login(email, password);
+        const token = createToken(user._id);
+        res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 })
         res.status(200).json({ user: user._id });
     }
     catch(err){
-        res.status(400).json({});
+        const errors = handleErrors(err);
+        res.status(400).json({ errors });
     }
 };
 module.exports = {
