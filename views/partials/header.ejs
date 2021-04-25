@@ -10,9 +10,13 @@
   <nav>
     <h1><a href="/">GGWP Games</a></h1>
     <ul>
-      <li><a href="/logout" class="btn btn3">Logout</a></li>
-      <li><a href="/login" class="btn btn2">Login</a></li>
-      <li><a href="/signup" class="btn">Signup</a></li>
+      <% if (user) { %>
+        <li id="user">Welcome, <%= user.email.split("@")[0] %> </li>
+        <li><a href="/logout" class="btn btn3">Logout</a></li>
+      <% } else { %>
+        <li><a href="/login" class="btn btn2">Login</a></li>
+        <li><a href="/signup" class="btn">Signup</a></li>
+      <% } %>   
     </ul>
   </nav>
   

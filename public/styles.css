@@ -58,6 +58,9 @@ nav li a{
   background: #999;
   color: #333;
 }
+#user{
+  color: aqua;
+}
 form h2{
   font-size: 2.4em;
   font-weight: 900;
