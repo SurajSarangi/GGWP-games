@@ -4,7 +4,7 @@ const handleErrors = require('./handleErrors');
 
 const maxAge = 3 * 24 * 60 * 60;
 const createToken = (id) => {
-    const secret = process.env.SECRET || 'play valorant';
+    const secret = process.env.SECRET;
     return jwt.sign({ id }, secret, {
         expiresIn: maxAge
     });

@@ -6,7 +6,7 @@ const jwtCheck = (req, res, next) => {
     const token = req.cookies.jwt;
 
     if(token){
-        const secret = process.env.SECRET || 'play valorant';
+        const secret = process.env.SECRET;
         jwt.verify(token, secret, (err, decodedToken) => {
             if(err){
                 console.log(err.message);
@@ -25,7 +25,7 @@ const checkUser = (req, res, next) => {
     const token = req.cookies.jwt;
 
     if(token){
-        const secret = process.env.SECRET || 'play valorant';
+        const secret = process.env.SECRET;
         jwt.verify(token, secret, async (err, decodedToken) => {
             if(err){
                 console.log(err.message);
