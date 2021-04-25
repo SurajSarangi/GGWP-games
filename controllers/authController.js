@@ -20,7 +20,8 @@ const handleErrors = (err) => {
 
 const maxAge = 3 * 24 * 60 * 60;
 const createToken = (id) => {
-    return jwt.sign({ id }, 'play valorant', {
+    const secret = process.env.SECRET || 'play valorant';
+    return jwt.sign({ id }, secret, {
         expiresIn: maxAge
     });
 }
@@ -50,7 +51,14 @@ const login_get = (req,res) => {
 
 const login_post = async (req,res) => {
     const { email, password } = req.body;
-    res.send(`${email} ${password}`);
+
+    try{
+        const user = await User.login(email, password);
+        res.status(200).json({ user: user._id });
+    }
+    catch(err){
+        res.status(400).json({});
+    }
 };
 module.exports = {
     signup_get,
