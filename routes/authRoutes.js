@@ -11,4 +11,6 @@ router.get('/login', (req, res) => controllers.login_get(req, res));
 
 router.post('/login', (req, res) => controllers.login_post(req, res));
 
+router.get('/logout', (req,res) => controllers.logout_get(req, res));
+
 module.exports = router;
